@@ -1,11 +1,19 @@
-body,
 html {
     height: 100%;
 }
 
+body {
+    color: black;
+}
+
 .bg-image {
     background-image: url("/images/background.jpg");
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
+    width: 100%;
     filter: blur(8px);
     -webkit-filter: blur(8px);
+    z-index: -100;
 }

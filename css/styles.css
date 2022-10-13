@@ -6,6 +6,10 @@ body {
     color: black;
 }
 
+.test img {
+    width: 50px;
+}
+
 .bg-image {
     background-image: url("/images/background.jpg");
     position: absolute;

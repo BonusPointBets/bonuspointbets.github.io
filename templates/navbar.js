@@ -5,28 +5,27 @@ class Navbar extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/index.html">Home</a>
+        <ul class="nav nav-pills justify-content-center"> 
+
+
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Roulette</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Button 1</a>
+                <a class="nav-link" href="#">CoinfLip</a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Dropdown maybe</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Link</a></li>
-                    <li><a class="dropdown-item" href="#">Link 2</a></li>
-                    <div class="dropdown-divider"></div>
-                    <li><a class="dropdown-item">Link 3</a></li>
-                    <li><a class="dropdown-item">Link 4</a></li>
-                    <li><a class="dropdown-item">Link 5</a></li>
-                </ul>
-            </li>
+            <a class="navbar-brand"  href="#">
+            <img src="/images/Logo.png" alt="..." height="100" >
+            </a>
+
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#">Slots</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
             </li>
         </ul>
       `;

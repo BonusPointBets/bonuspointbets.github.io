@@ -1,10 +1,10 @@
 class Navbar extends HTMLElement {
-  constructor() {
-    super();
-  }
+    constructor() {
+        super();
+    }
 
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
         <ul class="nav nav-pills justify-content-center"> 
 
 
@@ -17,7 +17,7 @@ class Navbar extends HTMLElement {
             </li>
 
             <a class="navbar-brand"  href="#">
-            <img src="/images/Logo.png" alt="..." height="100" >
+                <img class="navbar-logo" src="/images/logo.png" alt="..." height="70" >
             </a>
 
             <li class="nav-item">
@@ -29,7 +29,7 @@ class Navbar extends HTMLElement {
             </li>
         </ul>
       `;
-  }
+    }
 }
 
 customElements.define("navbar-component", Navbar);

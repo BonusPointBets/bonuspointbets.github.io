@@ -9,17 +9,21 @@ body {
 /* Navbar */
 
 .nav {
-    padding-top: 2%; 
+    padding: 1% 0px;
     background-color: rgba(37, 37, 37, 0.274);
+    backdrop-filter: blur(10px);
+    flex-direction: row;
+    align-items: center;
 }
-
 
 .nav-link {
     color: white;
     display: flex;
-    margin-top: 38px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: 0px 20px;
+}
+
+.navbar-logo {
+    padding: 0px 20px;
 }
 
 .nav-link:hover {
@@ -28,7 +32,6 @@ body {
 .nav-link:focus {
     color: #d1d1d1;
 }
-
 
 /* Background image */
 
@@ -41,7 +44,7 @@ body {
     width: 100%;
     filter: blur(8px);
     -webkit-filter: blur(8px);
-    z-index: -100; 
+    z-index: -100;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -1,19 +1,25 @@
 let pricedown;
+let angleRotate = 0.0;
 
 function preload() {
     pricedown = loadFont("/fonts/pricedown.otf");
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight, WEBGL);
+    createCanvas(windowWidth, windowHeight);
     textFont(pricedown);
     textSize(width / 10);
     textAlign(CENTER, CENTER);
 }
+
 function draw() {
-    background(0);
-    let time = millis();
-    rotateX(time / 1000);
-    rotateZ(time / 1234);
+    clear();
+
+    push();
+    translate(width / 2, height / 2);
+    rotate(radians(angleRotate));
     text("boņuks", 0, 0);
+    pop();
+
+    angleRotate += 1;
 }

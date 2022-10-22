@@ -1,10 +1,10 @@
 class Navbar extends HTMLElement {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
         <ul class="nav nav-pills justify-content-center"> 
 
 
@@ -29,7 +29,7 @@ class Navbar extends HTMLElement {
             </li>
         </ul>
       `;
-    }
+  }
 }
 
 customElements.define("navbar-component", Navbar);

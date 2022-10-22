@@ -16,7 +16,7 @@ class Navbar extends HTMLElement {
                 <a class="nav-link" href="game-test.html">CoinFlip</a>
             </li>
 
-            <a class="navbar-brand"  href="#">
+            <a class="navbar-brand"  href="index.html">
                 <img class="navbar-logo" src="/images/logo.png" alt="..." height="70" >
             </a>
 

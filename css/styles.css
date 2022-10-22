@@ -33,7 +33,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #f70808;
+    color: #f76008;
 }
 .nav-link:focus {
     color: #d1d1d1;
@@ -43,4 +43,36 @@ body {
 
 h1 {
     margin-top: 50px;
+}
+
+/* Game Buttons */
+.GameButton {
+    padding: 15px;
+    border-radius: 30px;
+    margin-left: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    background: #f76008bb ;
+    left: 25%;
+    position:relative
+}
+
+.Game-images{    
+    border-radius: 25px;
+    vertical-align: middle;
+}
+
+.GameButton:hover {
+    color: #f76008;
+}
+.content {
+    text-align: center;
+    margin: 2%;
+}
+
+.row {
+    display: flex;
 }

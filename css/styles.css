@@ -4,6 +4,12 @@ html {
 
 body {
     color: black;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
 }
 
 /* Navbar */
@@ -31,24 +37,6 @@ body {
 }
 .nav-link:focus {
     color: #d1d1d1;
-}
-
-/* Background image */
-
-.bg-image {
-    background-image: url("/images/background.jpg");
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    z-index: -100;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 /* Text  */

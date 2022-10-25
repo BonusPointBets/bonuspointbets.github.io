@@ -21,6 +21,7 @@
             href="/css/styles.css"
         />
         <script src="/templates/navbar.js"></script>
+        <script src="/templates/carousel.js"></script>
         <script src="/js/cookie-test.js"></script>
         <title>Bonus Point Bets</title>
     </head>
@@ -28,39 +29,9 @@
     <!-- Add this to body tag for cookie checking --- onload="checkCookie()" -->
     <body>
         <navbar-component></navbar-component>
-
-        <!-- Carousel -->
-        <!-- We should put this in a template thing some time -->
-        <div
-            id="carousel-object"
-            class="carousel slide"
-            data-bs-ride="carousel"
-        >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img
-                        src="/images/logo.png"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="/images/CoinfLip.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="/images/background.png"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-            </div>
-        </div>
-
+        <!-- carousel Script (carousel.js)-->
+        <carousel-component></carousel-component>
+  
         <h1>Welcome to Bonus Points Bets! Please click on one of the games to begin gaining Bonus Points!</h1>
 
         <p>We are the most reccomended gambling site ever!</p>

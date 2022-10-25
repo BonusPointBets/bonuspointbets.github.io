@@ -39,33 +39,31 @@ body {
     color: #d1d1d1;
 }
 
-/* Text  */
+/* Text */
 
 h1 {
     margin-top: 50px;
 }
 
 /* Game Buttons */
-.GameButton {
+.game-button {
     padding: 15px;
     border-radius: 30px;
-    margin-left: 10px;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 25px;
-    background: #f76008bb ;
-    left: 25%;
-    position:relative
+    background: #f76008bb;
+    position: relative;
 }
 
-.Game-images{    
+.game-image {
     border-radius: 25px;
     vertical-align: middle;
 }
 
-.GameButton:hover {
+.game-button:hover {
     color: #f76008;
 }
 .content {
@@ -75,4 +73,17 @@ h1 {
 
 .row {
     display: flex;
+}
+
+/* Carousel */
+.carousel .carousel-item {
+    height: 200px;
+}
+
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 200px;
 }

@@ -13,21 +13,21 @@ class carousel extends HTMLElement {
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img
-                    src="/images/logo.png"
+                    src="/images/Carousel1.png"
                     class="d-block w-100"
                     alt="..."
                 />
             </div>
             <div class="carousel-item">
                 <img
-                    src="/images/CoinfLip.jpg"
+                    src="/images/Carousel2.png"
                     class="d-block w-100"
                     alt="..."
                 />
             </div>
             <div class="carousel-item">
                 <img
-                    src="/images/background.png"
+                    src="/images/Carousel3.png"
                     class="d-block w-100"
                     alt="..."
                 />

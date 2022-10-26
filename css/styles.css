@@ -100,6 +100,7 @@ h1 {
 
 .carousel-inner {
     height: 100%;
+    border-radius: 40px;
 }
 
 /* Homepage Text*/

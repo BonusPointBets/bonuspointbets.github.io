@@ -13,7 +13,7 @@ class Navbar extends HTMLElement {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="game-test.html">CoinFlip</a>
+                <a class="nav-link" href="coin-flip.html">CoinFlip</a>
             </li>
 
             <a class="navbar-brand"  href="index.html">

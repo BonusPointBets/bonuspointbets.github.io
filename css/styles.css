@@ -1,3 +1,5 @@
+@import url('http://fonts.cdnfonts.com/css/agency-fb');
+
 html {
     height: 100%;
 }
@@ -10,6 +12,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
+    overflow: hidden; /* Hide scrollbars */
 }
 
 /* Navbar */
@@ -20,6 +23,8 @@ body {
     backdrop-filter: blur(10px);
     flex-direction: row;
     align-items: center;
+    font-family: 'Agency FB', sans-serif;
+    font-size: 20px;
 }
 
 .nav-link {
@@ -56,6 +61,8 @@ h1 {
     font-size: 25px;
     background: #f76008bb;
     position: relative;
+    font-family: 'Agency FB', sans-serif;
+    font-size: 25px
 }
 
 .game-image {
@@ -64,7 +71,7 @@ h1 {
 }
 
 .game-button:hover {
-    color: #f76008;
+    color: #fd1d1d;
 }
 .content {
     text-align: center;
@@ -93,4 +100,28 @@ h1 {
 
 .carousel-inner {
     height: 100%;
+}
+
+/* Homepage Text*/
+.title{
+    background: linear-gradient(rgba(131,58,180,1) 0%, rgba(253,29,29,1) 0%, rgba(252,176,69,1) 100%);
+    border-radius: 25px;
+    text-align: center;
+    height: 150px;
+    border: 5px solid #7f2205;
+    color: white;
+    font-family: 'Agency FB', sans-serif;
+    font-size: 55px;
+}
+
+.footer{
+    margin-top: 80px;
+    background: linear-gradient(rgba(131,58,180,1) 0%, rgba(253,29,29,1) 0%, rgba(252,176,69,1) 100%);
+    border-radius: 25px;
+    text-align: center;
+    height: 10%;
+    border: 5px solid #7f2205;
+    color: white;
+    font-family: 'Agency FB', sans-serif;
+    font-size: 25px;
 }

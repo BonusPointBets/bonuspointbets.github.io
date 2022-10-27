@@ -18,6 +18,9 @@ function setup() {
     textFont(pricedown);
     textSize(width / 50);
     textAlign(CENTER, CENTER);
+    if (!getCookie("bonuspoints")) {
+        document.cookie = "bonuspoints=1000";
+    }
 }
 function draw() {
     clear();
@@ -39,6 +42,7 @@ function draw() {
         translate(width / 2, height / 3);
         textSize(width / 20);
         text("Click to flip a coin!", 0, -200);
+        text(getCookie("bonuspoints"), 0, -100);
         pop();
     }
 
@@ -65,6 +69,7 @@ function coinFlip() {
         coinColor = color(255, 153, 51);
         coinText = "HEADS";
         flipHistory.push("H");
+        changeBonusPoints("bonuspoints", 10);
     } else {
         coinColor = color(51, 153, 255);
         coinText = "TAILS";
@@ -82,4 +87,18 @@ function showFlipHistory() {
 
         text(value, x - 100, y);
     }
+}
+
+function getCookie(cookieName) {
+    let cookie = {};
+    document.cookie.split(";").forEach(function (el) {
+        let [key, value] = el.split("=");
+        cookie[key.trim()] = value;
+    });
+    return cookie[cookieName];
+}
+
+function changeBonusPoints(cookieName, amount) {
+    let previousValue = getCookie(cookieName);
+    document.cookie = `bonuspoints=${Number(previousValue) + amount}`;
 }

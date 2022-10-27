@@ -5,6 +5,7 @@ let coinText = "";
 let flipHistory = [];
 let headsColor;
 let tailsColor;
+let flipButton;
 
 function preload() {
     pricedown = loadFont("/fonts/pricedown.otf");
@@ -18,23 +19,24 @@ function setup() {
     textFont(pricedown);
     textSize(width / 50);
     textAlign(CENTER, CENTER);
+
+    // Create button
+    flipButton = createElement("button", "FLIP");
+    flipButton.id("flip-button");
+
     if (!getCookie("bonuspoints")) {
         document.cookie = "bonuspoints=1000";
     }
 }
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
 function draw() {
     clear();
     // background(0, 0);
     let time = millis();
-
-    // Flip history
-    {
-        push();
-        translate(width / 2, height / 2);
-        text("Flip History:", 0, -20);
-        showFlipHistory();
-        pop();
-    }
 
     // Text
     {
@@ -57,10 +59,27 @@ function draw() {
         text(coinText, 0, 0 - 2);
         pop();
     }
+
+    // Button
+    {
+        push();
+        flipButton.position(width / 2 - flipButton.width / 2, height / 2);
+        flipButton.mousePressed(coinFlip);
+        pop();
+    }
+
+    // Flip history
+    {
+        push();
+        translate(width / 2, height / 2);
+        text("Flip History:", 0, -20);
+        showFlipHistory();
+        pop();
+    }
 }
-function mousePressed() {
-    coinFlip();
-}
+// function mousePressed() {
+//     coinFlip();
+// }
 
 function coinFlip() {
     var flip = random(100);

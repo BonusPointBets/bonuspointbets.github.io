@@ -26,6 +26,8 @@ function setup() {
 
     if (!getCookie("bonuspoints")) {
         document.cookie = "bonuspoints=1000";
+        document.cookie = "bonuspointsgained=1000";
+        document.cookie = "bonuspointslost=0";
     }
 }
 
@@ -77,9 +79,6 @@ function draw() {
         pop();
     }
 }
-// function mousePressed() {
-//     coinFlip();
-// }
 
 function coinFlip() {
     var flip = random(100);
@@ -93,6 +92,7 @@ function coinFlip() {
         coinColor = color(51, 153, 255);
         coinText = "TAILS";
         flipHistory.push("T");
+        changeBonusPoints("bonuspoints", -5);
     }
 }
 
@@ -104,7 +104,14 @@ function showFlipHistory() {
         let y = 10 + floor(i / 8) * 40;
         textSize(width / 40);
 
+        push();
+        if (value == "H") {
+            fill(0, 128, 0);
+        } else {
+            fill(139, 0, 0);
+        }
         text(value, x - 100, y);
+        pop();
     }
 }
 
@@ -120,4 +127,14 @@ function getCookie(cookieName) {
 function changeBonusPoints(cookieName, amount) {
     let previousValue = getCookie(cookieName);
     document.cookie = `bonuspoints=${Number(previousValue) + amount}`;
+
+    if (amount > 0) {
+        changeCookieValueNum("bonuspointsgained", Number(getCookie("bonuspointsgained")) + Number(amount));
+    } else if (amount < 0) {
+        changeCookieValueNum("bonuspointslost", Number(getCookie("bonuspointslost")) + Number(amount));
+    }
+}
+
+function changeCookieValueNum(cookieName, value) {
+    document.cookie = `${cookieName}=${Number(value)}`;
 }

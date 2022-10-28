@@ -172,6 +172,7 @@ h1 {
     flex-direction: column;
     gap: 40px;
     z-index: -1;
+    cursor: default;
 }
 
 .profile-card-image img {
@@ -218,4 +219,16 @@ h1 {
     transform: scale(1.2);
     cursor: default;
     transition: 0.2s;
+}
+
+#cookie-bonuspoints {
+    color: goldenrod;
+}
+
+#cookie-bonuspointsgained {
+    color: green;
+}
+
+#cookie-bonuspointslost {
+    color: darkred;
 }

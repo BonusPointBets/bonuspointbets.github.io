@@ -19,4 +19,6 @@ function changeCookieValue(cookieName, value) {
 function readCookies() {
     document.getElementById("cookie-username").innerHTML += getCookie("username");
     document.getElementById("cookie-bonuspoints").innerHTML += getCookie("bonuspoints");
+    document.getElementById("cookie-bonuspointsgained").innerHTML += getCookie("bonuspointsgained");
+    document.getElementById("cookie-bonuspointslost").innerHTML += getCookie("bonuspointslost");
 }

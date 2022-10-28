@@ -167,7 +167,7 @@ h1 {
     box-shadow: 0 20px 100px -30px black;
     border-radius: 50px;
     width: 500px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
     padding: 3rem 5rem;
     flex-direction: column;
     gap: 40px;
@@ -180,7 +180,7 @@ h1 {
     height: 200px;
     border-radius: 100%;
     object-fit: cover;
-    box-shadow: 0 10px 60px -10px black;
+    box-shadow: 0 10px 60px -20px black;
 }
 
 .profile-card-description {
@@ -226,9 +226,9 @@ h1 {
 }
 
 #cookie-bonuspointsgained {
-    color: green;
+    color: rgb(0, 140, 0);
 }
 
 #cookie-bonuspointslost {
-    color: darkred;
+    color: rgb(150, 0, 0);
 }

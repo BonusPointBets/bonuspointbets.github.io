@@ -147,11 +147,75 @@ h1 {
     font-family: "Agency FB", sans-serif;
     font-size: 55px;
 }
-.DescriptionTitles{
+.DescriptionTitles {
     border-radius: 25px;
     text-align: left;
     padding-left: 250px;
     color: white;
     font-family: "Agency FB", sans-serif;
     font-size: 55px;
+}
+
+/* Profile card */
+
+.profile-card {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 5vh;
+    box-shadow: 0 20px 100px -30px black;
+    border-radius: 50px;
+    width: 500px;
+    backdrop-filter: blur(15px);
+    padding: 3rem 5rem;
+    flex-direction: column;
+    gap: 40px;
+    z-index: -1;
+}
+
+.profile-card-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+    box-shadow: 0 10px 60px -10px black;
+}
+
+.profile-card-description {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.profile-card-description h1 {
+    font-size: 2.5rem;
+    margin-top: 0;
+}
+
+.profile-card-info {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.profile-card-info > div > *:first-child {
+    font-weight: bold;
+    font-size: 2rem;
+    transition: 0.2s;
+}
+
+.profile-card-info > div > *:last-child {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.profile-card-info > div > *:first-child:hover {
+    transform: translateY(-3px);
+    transform: scale(1.2);
+    cursor: default;
+    transition: 0.2s;
 }

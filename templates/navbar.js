@@ -9,7 +9,7 @@ class Navbar extends HTMLElement {
 
 
             <li class="nav-item ">
-                <a class="nav-link" href="#">Roulette</a>
+                <a class="nav-link" href="game-test.html">Roulette</a>
             </li>
 
             <li class="nav-item">

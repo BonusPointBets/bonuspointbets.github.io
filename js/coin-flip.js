@@ -164,12 +164,14 @@ function coinCalculations() {
         coinColor = color(255, 153, 51);
         coinText = "HEADS";
         lastFlip = betAmount * 2;
+        setCookie("bonuspointsgained", Number(getCookie("bonuspointsgained")) + Number(lastFlip));
     }
     // Lose
     else {
         coinColor = color(51, 153, 255);
         coinText = "TAILS";
         lastFlip = -betAmount;
+        setCookie("bonuspointslost", Number(getCookie("bonuspointslost")) + Number(lastFlip));
     }
     changeBonusPoints("bonuspoints", lastFlip);
 }

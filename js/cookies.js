@@ -74,16 +74,21 @@ function debugResetCookies() {
     location.reload();
 }
 
-
 // Super real statistic counter for bonus points earned and current players
 let timer = setInterval(testLog, 1000);
 function testLog() {
-    setCookie("BonusPointsEarnedRandomly", Number(getCookie("BonusPointsEarnedRandomly")) + 10);
-    document.getElementById("BonusPointsEarned").innerHTML = getCookie("BonusPointsEarned");
+    setCookie("BonusPointsEarnedRandomly", Number(getCookie("BonusPointsEarnedRandomly")) + getRandomInt(100));
+    document.getElementById("BonusPointsEarned").innerHTML = getCookie("BonusPointsEarnedRandomly");
 }
 
+// Gets a random number between 0 and (max - 1)
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+// Sets super real statistic counter value if doesnt exist
 function onPageLoad() {
-    if (!getCookie("BonusPointsEarnedRandomly")){
+    if (!getCookie("BonusPointsEarnedRandomly")) {
         setCookie("BonusPointsEarnedRandomly", 46505);
     }
 }

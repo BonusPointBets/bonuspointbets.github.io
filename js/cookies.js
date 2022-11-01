@@ -74,8 +74,16 @@ function debugResetCookies() {
     location.reload();
 }
 
-let timer = setInterval(testLog, 1000);
 
+// Super real statistic counter for bonus points earned and current players
+let timer = setInterval(testLog, 1000);
 function testLog() {
-    console.log("TEST");
+    setCookie("BonusPointsEarnedRandomly", Number(getCookie("BonusPointsEarnedRandomly")) + 10);
+    document.getElementById("BonusPointsEarned").innerHTML = getCookie("BonusPointsEarned");
+}
+
+function onPageLoad() {
+    if (!getCookie("BonusPointsEarnedRandomly")){
+        setCookie("BonusPointsEarnedRandomly", 46505);
+    }
 }

@@ -43,11 +43,31 @@ body {
     color: #d1d1d1;
 }
 
-/* Text */
 
-h1 {
-    margin-top: 50px;
+/*User Statistics*/
+.Statistics-bar-info{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    box-shadow: 0 20px 100px -30px black;
+    backdrop-filter: blur(25px);
+    padding: 25px;
+    margin-bottom: 25px;
+    gap: 80px;
+    z-index: -1;
+    cursor: default;
+    font-family: "Agency FB", sans-serif;
+    color: white;
+    font-size: 25px;
 }
+
+.Statistics-Numbers{
+    font-size: 30px;
+}
+
+/* Text */
 
 /* Game Buttons */
 .game-button {
@@ -59,8 +79,7 @@ h1 {
     background: #f76008bb;
     position: relative;
     font-family: "Agency FB", sans-serif;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
+    border-radius: 40px;
     cursor: pointer;
     transition: all 0.5s;
     
@@ -132,6 +151,7 @@ h1 {
 }
 
 /* Carousel */
+
 #carousel-object {
     margin: auto;
     width: 549px;
@@ -153,9 +173,10 @@ h1 {
 }
 
 /* Homepage Text*/
+
 .title {
     margin: auto;
-    margin-top: 80px;
+    margin-top: 40px;
     box-shadow: 0 20px 100px -30px black;
     backdrop-filter: blur(25px);
     padding: 1rem ;

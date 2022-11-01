@@ -28,10 +28,27 @@
 
     <!-- Add this to body tag for cookie checking --- onload="checkCookie()" -->
     <body onload="onPageLoad()">
+
         <!--Calls template files-->
         <navbar-component></navbar-component>
+
+        <div class="Statistics-bar-info">
+            <div>
+                <div class="Statistics-Numbers" id="cookie-BonusPointsEarned"></div>
+                <div>Bonus Points earned globally</div>
+            </div>
+            <div>
+                <div class="Statistics-Numbers" id="cookie-CoinsFlipped"></div>
+                <div>Games Played</div>
+            </div>
+            <div>
+                <div class="Statistics-Numbers" id="cookie-PointsLost"></div>
+                <div>Bonus Points Lost globally</div>
+            </div>
+        </div>
+
         <carousel-component></carousel-component>
-        <div id="BonusPointsEarned">122fgdsgsdfgsdfgsjhdfgskjhgf2</div>
+        <div id="BonusPointsEarned" class="SmallerNavbar"></div>
         <h1 class="title">
             Welcome to Bonus Points Bets! <br />
             Click on one of the games to begin gaining Bonus Points!

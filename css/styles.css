@@ -4,6 +4,11 @@ html {
     height: 100%;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     color: black;
     background-image: url("/images/background.png");
@@ -308,4 +313,43 @@ body {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* Coin flip game */
+.button-div {
+    justify-content: center;
+    display: flex;
+}
+
+.coinflip-button {
+    font-size: 30px;
+    border-radius: 10px;
+    border-width: 0;
+    padding: 20px 20px;
+    background-color: #f6752b;
+    color: white;
+    font-family: "Agency FB";
+    font-size: 10;
+    box-shadow: 0 5px 0 #d45308;
+    transition: 0.1s;
+    justify-content: center;
+    margin: 10px;
+}
+
+.coinflip-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #d45308;
+    transition: 0.1s;
+}
+
+.coinflip-button:active {
+    box-shadow: none;
+    transition: 0.05s;
+    transform: translateY(5px);
+}
+
+#flip-button {
+    background: rgb(0, 140, 0);
+    box-shadow: 0 5px 0 rgb(0, 100, 0);
 }

@@ -1,34 +1,89 @@
-let pricedown;
-let flip;
-let coinColor;
+let font;
 let coinText = "";
-let flipHistory = [];
+let coinColor;
 let headsColor;
 let tailsColor;
+let flipAngle = 0.0;
+let flipping = false;
 let flipButton;
+let increaseButton;
+let decreaseButton;
+let maxButton;
+let minButton;
+let divideButton;
+let multiplyButton;
+let betAmount;
+let buttonDiv;
+let flippedOnce = false;
 
 function preload() {
-    pricedown = loadFont("/fonts/pricedown.otf");
+    font = loadFont("/fonts/AGENCYB.otf");
     headsColor = color(255, 153, 51);
     tailsColor = color(51, 153, 255);
     coinColor = (120, 120, 120);
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    textFont(pricedown);
-    textSize(width / 50);
-    textAlign(CENTER, CENTER);
-
-    // Create button
-    flipButton = createElement("button", "FLIP");
-    flipButton.id("flip-button");
-
-    if (!getCookie("bonuspoints")) {
-        document.cookie = "bonuspoints=1000";
-        document.cookie = "bonuspointsgained=1000";
-        document.cookie = "bonuspointslost=0";
+    // Redirect to account creation if no cookies exist
+    if (!getCookie("username")) {
+        console.log("NO PROFILE");
+        location.replace("/Profile.html");
     }
+
+    // Set minimum possible bet
+    if (getCookie("bonuspoints") >= 10) {
+        betAmount = 10;
+    } else {
+        betAmount = Number(getCookie("bonuspoints"));
+    }
+
+    createCanvas(windowWidth, 600);
+    textFont(font);
+    textAlign(CENTER, CENTER);
+    frameRate(60);
+
+    buttonDiv = createDiv();
+    buttonDiv.addClass("button-div");
+
+    flipButton = createButton("FLIP");
+    decreaseButton = createButton("-50");
+    increaseButton = createButton("+50");
+    minButton = createButton("MIN");
+    maxButton = createButton("MAX");
+    divideButton = createButton("1/2");
+    multiplyButton = createButton("X2");
+
+    flipButton.position(0, 0, "relative");
+    decreaseButton.position(0, 0, "relative");
+    increaseButton.position(0, 0, "relative");
+    minButton.position(0, 0, "relative");
+    maxButton.position(0, 0, "relative");
+    divideButton.position(0, 0, "relative");
+    multiplyButton.position(0, 0, "relative");
+
+    flipButton.addClass("coinflip-button");
+    decreaseButton.addClass("coinflip-button");
+    increaseButton.addClass("coinflip-button");
+    minButton.addClass("coinflip-button");
+    maxButton.addClass("coinflip-button");
+    divideButton.addClass("coinflip-button");
+    multiplyButton.addClass("coinflip-button");
+
+    flipButton.id("flip-button");
+    decreaseButton.id("decrease-button");
+    increaseButton.id("increase-button");
+    minButton.id("min-button");
+    maxButton.id("max-button");
+    divideButton.id("divide-button");
+    multiplyButton.id("multiply-button");
+
+    flipButton.parent(buttonDiv);
+    decreaseButton.parent(buttonDiv);
+    increaseButton.parent(buttonDiv);
+    minButton.parent(buttonDiv);
+    maxButton.parent(buttonDiv);
+    divideButton.parent(buttonDiv);
+    multiplyButton.parent(buttonDiv);
 }
 
 function windowResized() {
@@ -36,105 +91,148 @@ function windowResized() {
 }
 
 function draw() {
+    // Clear canvas
     clear();
-    // background(0, 0);
-    let time = millis();
 
-    // Text
+    // Draw text
+    push();
     {
-        push();
-        translate(width / 2, height / 3);
-        textSize(width / 20);
-        text("Click to flip a coin!", 0, -200);
-        text(getCookie("bonuspoints"), 0, -100);
-        pop();
+        drawTopText();
+    }
+    pop();
+
+    // Get input
+    {
+        getButtonPress();
     }
 
-    // Coin
+    // Draw and update coin
+    push();
     {
-        push();
-        translate(width / 2, height / 3);
-        fill(coinColor);
-        ellipse(0, 0, 80, 80);
+        coinFunctions();
+    }
+    pop();
+}
+
+function coinFunctions() {
+    // Draw coin
+    drawCoin();
+
+    // Animate flip
+    animateFlip();
+}
+
+function drawCoin() {
+    push();
+    {
+        translate(width / 2, height / 1.5);
+        strokeWeight(4);
+        fill(coinColor, 120);
+        if (!flippedOnce) {
+            stroke(coinColor, 255);
+        } else {
+            stroke(coinText == "HEADS" ? 190 : 0, 103, coinText == "TAILS" ? 190 : 0, 255);
+        }
+        ellipse(0, 50 - sin(flipAngle) * 150, 80, min(80 - sin(flipAngle * 2) * 200, 80));
+        strokeWeight(0);
         fill(0);
-        textSize(width / 60);
-        text(coinText, 0, 0 - 2);
-        pop();
+        if (!flipping) {
+            textSize(width / 60);
+            fill(coinText == "HEADS" ? 190 : 0, 103, coinText == "TAILS" ? 190 : 0, 255);
+            text(coinText, 0, 47);
+        }
     }
+    pop();
+}
 
-    // Button
-    {
-        push();
-        flipButton.position(width / 2 - flipButton.width / 2, height / 2);
-        flipButton.mousePressed(coinFlip);
-        pop();
-    }
-
-    // Flip history
-    {
-        push();
-        translate(width / 2, height / 2);
-        text("Flip History:", 0, -20);
-        showFlipHistory();
-        pop();
+function animateFlip() {
+    if (flipping) {
+        flipAngle += 0.1;
+        if (flipAngle > PI) {
+            flipping = false;
+            flippedOnce = true;
+            flipAngle = 0;
+            coinCalculations();
+        }
     }
 }
 
-function coinFlip() {
-    var flip = random(100);
-
-    if (flip < 50) {
+function coinCalculations() {
+    let flip = random(100);
+    // Win
+    if (flip < 45) {
         coinColor = color(255, 153, 51);
         coinText = "HEADS";
-        flipHistory.push("H");
-        changeBonusPoints("bonuspoints", 10);
-    } else {
+        lastFlip = betAmount * 2;
+    }
+    // Lose
+    else {
         coinColor = color(51, 153, 255);
         coinText = "TAILS";
-        flipHistory.push("T");
-        changeBonusPoints("bonuspoints", -5);
+        lastFlip = -betAmount;
+    }
+    changeBonusPoints("bonuspoints", lastFlip);
+}
+
+function getButtonPress() {
+    flipButton.mousePressed(bFlip);
+    increaseButton.mousePressed(bIncrease);
+    decreaseButton.mousePressed(bDecrease);
+    maxButton.mousePressed(bMax);
+    minButton.mousePressed(bMin);
+    multiplyButton.mousePressed(bMultipliy);
+    divideButton.mousePressed(bDivide);
+}
+
+function bFlip() {
+    if (!flipping && Number(getCookie("bonuspoints")) >= betAmount) {
+        flipping = true;
     }
 }
 
-function showFlipHistory() {
-    let y = 20;
-    for (let i = 0; i < flipHistory.length; i++) {
-        let value = flipHistory[i];
-        let x = 1 + (i % 8) * 30;
-        let y = 10 + floor(i / 8) * 40;
-        textSize(width / 40);
-
-        push();
-        if (value == "H") {
-            fill(0, 128, 0);
-        } else {
-            fill(139, 0, 0);
-        }
-        text(value, x - 100, y);
-        pop();
+function bIncrease() {
+    if (betAmount + 50 <= Number(getCookie("bonuspoints"))) {
+        betAmount += 50;
     }
 }
 
-function getCookie(cookieName) {
-    let cookie = {};
-    document.cookie.split(";").forEach(function (el) {
-        let [key, value] = el.split("=");
-        cookie[key.trim()] = value;
-    });
-    return cookie[cookieName];
-}
-
-function changeBonusPoints(cookieName, amount) {
-    let previousValue = getCookie(cookieName);
-    document.cookie = `bonuspoints=${Number(previousValue) + amount}`;
-
-    if (amount > 0) {
-        changeCookieValueNum("bonuspointsgained", Number(getCookie("bonuspointsgained")) + Number(amount));
-    } else if (amount < 0) {
-        changeCookieValueNum("bonuspointslost", Number(getCookie("bonuspointslost")) + Number(amount));
+function bDecrease() {
+    if (betAmount - 50 > 0) {
+        betAmount -= 50;
     }
 }
 
-function changeCookieValueNum(cookieName, value) {
-    document.cookie = `${cookieName}=${Number(value)}`;
+function bMax() {
+    betAmount = Number(getCookie("bonuspoints"));
+}
+
+function bMin() {
+    if (Number(getCookie("bonuspoints")) >= 1) {
+        betAmount = 1;
+    }
+}
+
+function bMultipliy() {
+    if (betAmount * 2 <= Number(getCookie("bonuspoints"))) {
+        betAmount *= 2;
+    }
+}
+
+function bDivide() {
+    if (floor(betAmount / 2) >= 1) {
+        betAmount = floor(betAmount / 2);
+    }
+}
+
+function drawTopText() {
+    push();
+    {
+        translate(width / 2, 0 + textAscent() * 3);
+        textSize(width / 20);
+        text("Place your bets and flip a coin!", 0, height / 100);
+        textSize(width / 35);
+        text(`Bonus Points: ${getCookie("bonuspoints")}`, 0, 100 + height / 20);
+        text(`Bet: ${betAmount}`, 0, 100 + height / 6);
+    }
+    pop();
 }

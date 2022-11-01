@@ -18,6 +18,14 @@ function setCookie(c_name, c_value) {
     document.cookie = encodeURIComponent(c_name) + "=" + encodeURIComponent(c_value) + (!exdays ? "" : "; expires=" + exdate.toUTCString());
 }
 
+// Set cookie for specific amount of days
+function setCookieForDays(c_name, c_value, c_days) {
+    let exdays = c_days;
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + c_days);
+    document.cookie = encodeURIComponent(c_name) + "=" + encodeURIComponent(c_value) + (!exdays ? "" : "; expires=" + exdate.toUTCString());
+}
+
 // CHANGE SOON, BAD CODE (changes bonus points by a value)
 function changeBonusPoints(c_name, c_value) {
     let previousValue = getCookie(c_name);
@@ -49,10 +57,25 @@ function deleteAllCookies() {
 // DEBUG Resets all cookies
 function debugResetCookies() {
     deleteAllCookies();
-    let username = prompt("Enter your username");
+    let username = prompt("Enter your username.");
+    while (username.length == 0 || username.length > 15 || username.indexOf(" ") >= 0) {
+        if (username.length == 0) {
+            username = prompt("Username too short.");
+        } else if (username.length > 15) {
+            username = prompt("Username too long.");
+        } else if (username.indexOf(" ") >= 0) {
+            username = prompt("Username cannot contain spaces.");
+        }
+    }
     setCookie("username", username);
     setCookie("bonuspoints", 1000);
     setCookie("bonuspointsgained", 1000);
     setCookie("bonuspointslost", 0);
     location.reload();
+}
+
+let timer = setInterval(testLog, 1000);
+
+function testLog() {
+    console.log("TEST");
 }

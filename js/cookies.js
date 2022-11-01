@@ -57,14 +57,22 @@ function deleteAllCookies() {
 // DEBUG Resets all cookies
 function debugResetCookies() {
     deleteAllCookies();
-    let username = prompt("Enter your username.");
+    let username = prompt("Enter your username.")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
     while (username.length == 0 || username.length > 15 || username.indexOf(" ") >= 0) {
         if (username.length == 0) {
-            username = prompt("Username too short.");
+            username = prompt("Username too short.")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
         } else if (username.length > 15) {
-            username = prompt("Username too long.");
+            username = prompt("Username too long.")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
         } else if (username.indexOf(" ") >= 0) {
-            username = prompt("Username cannot contain spaces.");
+            username = prompt("Username cannot contain spaces.")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
         }
     }
     setCookie("username", username);
@@ -73,7 +81,6 @@ function debugResetCookies() {
     setCookie("bonuspointslost", 0);
     location.reload();
 }
-
 
 // Gets a random number between 0 and (max - 1)
 function getRandomInt(max) {
@@ -93,7 +100,6 @@ function testLog() {
     setCookie("BonusPointsEarnedRandomly", Number(getCookie("BonusPointsEarnedRandomly")) + getRandomInt(100));
     document.getElementById("cookie-BonusPointsEarned").innerHTML = getCookie("BonusPointsEarnedRandomly");
 }
-
 
 // Super real statistic counter for coins flipped
 let timercoinsflipped = setInterval(testLog2, 6000);

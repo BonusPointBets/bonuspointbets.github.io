@@ -26,8 +26,7 @@ function preload() {
 function setup() {
     // Redirect to account creation if no cookies exist
     if (!getCookie("username")) {
-        console.log("NO PROFILE");
-        location.replace("/Profile.html");
+        location.replace("/register.html");
     }
 
     // Set minimum possible bet

@@ -40,6 +40,8 @@ function readCookies() {
         document.getElementById("cookie-bonuspoints").innerHTML += getCookie("bonuspoints");
         document.getElementById("cookie-bonuspointsgained").innerHTML += getCookie("bonuspointsgained");
         document.getElementById("cookie-bonuspointslost").innerHTML += getCookie("bonuspointslost");
+    } else {
+        location.replace("./register.html");
     }
 }
 

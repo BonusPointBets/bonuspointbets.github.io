@@ -81,36 +81,3 @@ function debugResetCookies() {
     setCookie("bonuspointslost", 0);
     location.reload();
 }
-
-// Gets a random number between 0 and (max - 1)
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-// Sets super real statistic counter value if doesnt exist
-function onPageLoad() {
-    if (!getCookie("BonusPointsEarnedRandomly")) {
-        setCookie("BonusPointsEarnedRandomly", 46505);
-    }
-}
-
-// Super real statistic counter for bonus points earned
-let timer = setInterval(testLog, 5000);
-function testLog() {
-    setCookie("BonusPointsEarnedRandomly", Number(getCookie("BonusPointsEarnedRandomly")) + getRandomInt(100));
-    document.getElementById("cookie-BonusPointsEarned").innerHTML = getCookie("BonusPointsEarnedRandomly");
-}
-
-// Super real statistic counter for coins flipped
-let timercoinsflipped = setInterval(testLog2, 6000);
-function testLog2() {
-    setCookie("CoinsFlippedRandomly", Number(getCookie("CoinsFlippedRandomly")) + getRandomInt(5));
-    document.getElementById("cookie-CoinsFlipped").innerHTML = getCookie("CoinsFlippedRandomly");
-}
-
-// Super real statistic counter for coins flipped
-let timercoinslost = setInterval(testLog3, 5500);
-function testLog3() {
-    setCookie("CoinsLostRandomly", Number(getCookie("CoinsLostRandomly")) + getRandomInt(100));
-    document.getElementById("cookie-PointsLost").innerHTML = getCookie("CoinsLostRandomly");
-}

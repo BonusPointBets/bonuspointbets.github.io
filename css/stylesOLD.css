@@ -49,13 +49,16 @@ body {
 }
 
 /*User Statistics*/
-.statistics-bar-info {
+.Statistics-bar-info {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 0;
+    margin-top: 10px;
+    box-shadow: 0 20px 100px -30px black;
     backdrop-filter: blur(25px);
+    padding: 25px;
+    margin-bottom: 25px;
     gap: 80px;
     z-index: -1;
     cursor: default;
@@ -64,7 +67,7 @@ body {
     font-size: 25px;
 }
 
-.statistics-numbers {
+.Statistics-Numbers {
     font-size: 30px;
 }
 
@@ -173,38 +176,56 @@ body {
 
 .title {
     margin: auto;
-    margin: 40px 0;
+    margin-top: 40px;
     box-shadow: 0 20px 100px -30px black;
     backdrop-filter: blur(25px);
-    padding: 1rem 0;
+    padding: 1rem;
     text-align: center;
     color: white;
     font-family: "Agency FB", sans-serif;
     font-size: 55px;
 }
 
-.title h1 {
-    font-size: 40px;
-}
-
 .footer {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    bottom: 0;
     margin: auto;
-    margin-top: auto;
+    margin-top: 80px;
     box-shadow: 0 20px 100px -30px black;
     backdrop-filter: blur(25px);
     padding: 1rem;
     text-align: center;
-    /* height: 100px; */
+    height: 100px;
     color: white;
     font-family: "Agency FB", sans-serif;
+    font-size: 25px;
 }
 
-.footer h1 {
-    font-size: 25px;
+/* Profile Text */
+.ProfileTitle {
+    background: linear-gradient(rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 0%, rgba(252, 176, 69, 1) 100%);
+    border-radius: 25px;
+    text-align: center;
+    border: 5px solid #7f2205;
+    color: white;
+    font-family: "Agency FB", sans-serif;
+    font-size: 55px;
+}
+
+.ProfileDescription {
+    background: linear-gradient(rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 0%, rgba(252, 176, 69, 1) 100%);
+    border-radius: 25px;
+    text-align: center;
+    border: 5px solid #7f2205;
+    color: white;
+    font-family: "Agency FB", sans-serif;
+    font-size: 55px;
+}
+.DescriptionTitles {
+    border-radius: 25px;
+    text-align: left;
+    padding-left: 250px;
+    color: white;
+    font-family: "Agency FB", sans-serif;
+    font-size: 55px;
 }
 
 /* Profile card */

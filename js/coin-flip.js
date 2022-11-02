@@ -172,7 +172,7 @@ function coinCalculations() {
         lastFlip = -betAmount;
         setCookie("bonuspointslost", Number(getCookie("bonuspointslost")) + Number(lastFlip));
     }
-    changeBonusPoints("bonuspoints", lastFlip);
+    setCookie("bonuspoints", Number(getCookie("bonuspoints")) + Number(lastFlip));
 }
 
 function getButtonPress() {

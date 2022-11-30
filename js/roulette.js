@@ -1,7 +1,7 @@
-let bankValue = 1000;
+// Defines starting values
+// ADJUST BANKVALUE TO LINK IT WITH OUR COOKIE SYSTEM, AND ADJUST BET WIN LINES
+let bankValue = 950;
 let currentBet = 0;
-let wager = 5;
-let lastWager = 0;
 let bet = [];
 let numbersBet = [];
 let previousNumbers = [];
@@ -9,6 +9,7 @@ let previousNumbers = [];
 let numRed = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
 let wheelnumbersAC = [0, 26, 3, 35, 12, 28, 7, 29, 18, 22, 9, 31, 14, 20, 1, 33, 16, 24, 5, 10, 23, 8, 30, 11, 36, 13, 27, 6, 34, 17, 25, 2, 21, 4, 19, 15, 32];
 
+// Creates table container
 let container = document.createElement("div");
 container.setAttribute("id", "container");
 document.body.append(container);
@@ -18,41 +19,13 @@ startGame();
 let wheel = document.getElementsByClassName("wheel")[0];
 let ballTrack = document.getElementsByClassName("ballTrack")[0];
 
-function resetGame() {
-    bankValue = 1000;
-    currentBet = 0;
-    wager = 5;
-    bet = [];
-    numbersBet = [];
-    previousNumbers = [];
-    document.getElementById("betting_board").remove();
-    document.getElementById("notification").remove();
-    buildBettingBoard();
-}
-
+//Loads functions for visual
 function startGame() {
     buildWheel();
     buildBettingBoard();
 }
 
-function gameOver() {
-    let notification = document.createElement("div");
-    notification.setAttribute("id", "notification");
-    let nSpan = document.createElement("span");
-    nSpan.setAttribute("class", "nSpan");
-    nSpan.innerText = "Bankrupt";
-    notification.append(nSpan);
-
-    let nBtn = document.createElement("div");
-    nBtn.setAttribute("class", "nBtn");
-    nBtn.innerText = "Play again";
-    nBtn.onclick = function () {
-        resetGame();
-    };
-    notification.append(nBtn);
-    container.prepend(notification);
-}
-
+// Creates the Wheel
 function buildWheel() {
     let wheel = document.createElement("div");
     wheel.setAttribute("class", "wheel");
@@ -73,11 +46,7 @@ function buildWheel() {
         sect.append(block);
         wheel.append(sect);
     }
-
-    let pocketsRim = document.createElement("div");
-    pocketsRim.setAttribute("class", "pocketsRim");
-    wheel.append(pocketsRim);
-
+    // Ball
     let ballTrack = document.createElement("div");
     ballTrack.setAttribute("class", "ballTrack");
     let ball = document.createElement("div");
@@ -85,16 +54,15 @@ function buildWheel() {
     ballTrack.append(ball);
     wheel.append(ballTrack);
 
-    let pockets = document.createElement("div");
-    pockets.setAttribute("class", "pockets");
-    wheel.append(pockets);
-
+    // middle cone
     let cone = document.createElement("div");
     cone.setAttribute("class", "cone");
     wheel.append(cone);
 
     container.append(wheel);
 }
+
+/* Betting board creation */
 
 function buildBettingBoard() {
     let bettingBoard = document.createElement("div");
@@ -230,27 +198,7 @@ function buildBettingBoard() {
 
     bettingBoard.append(wl);
 
-    let bbtop = document.createElement("div");
-    bbtop.setAttribute("class", "bbtop");
-    let bbtopBlocks = ["1 to 18", "19 to 36"];
-    for (i = 0; i < bbtopBlocks.length; i++) {
-        let f = i;
-        var bbtoptwo = document.createElement("div");
-        bbtoptwo.setAttribute("class", "bbtoptwo");
-        let num = f == 0 ? "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18" : "19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36";
-        var objType = f == 0 ? "outside_low" : "outside_high";
-        bbtoptwo.onclick = function () {
-            setBet(this, num, objType, 1);
-        };
-        bbtoptwo.oncontextmenu = function (e) {
-            e.preventDefault();
-            removeBet(this, num, objType, 1);
-        };
-        bbtoptwo.innerText = bbtopBlocks[i];
-        bbtop.append(bbtoptwo);
-    }
-    bettingBoard.append(bbtop);
-
+    /* Betting board  creation */
     let numberBoard = document.createElement("div");
     numberBoard.setAttribute("class", "number_board");
 
@@ -270,6 +218,8 @@ function buildBettingBoard() {
     nbnz.innerText = "0";
     zero.append(nbnz);
     numberBoard.append(zero);
+
+    /* Betting number creation */
 
     var numberBlocks = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, "2 to 1", 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, "2 to 1", 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, "2 to 1"];
     var redBlocks = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
@@ -304,6 +254,8 @@ function buildBettingBoard() {
     }
     bettingBoard.append(numberBoard);
 
+    /* Betting board side bets */
+
     let bo3Board = document.createElement("div");
     bo3Board.setAttribute("class", "bo3_board");
     let bo3Blocks = ["1 to 12", "13 to 24", "25 to 36"];
@@ -324,6 +276,8 @@ function buildBettingBoard() {
         bo3Board.append(bo3Block);
     }
     bettingBoard.append(bo3Board);
+
+    /* Betting board bottom bets */
 
     let otoBoard = document.createElement("div");
     otoBoard.setAttribute("class", "oto_board");
@@ -361,6 +315,8 @@ function buildBettingBoard() {
     }
     bettingBoard.append(otoBoard);
 
+    /* Chip creation */
+
     let chipDeck = document.createElement("div");
     chipDeck.setAttribute("class", "chipDeck");
     let chipValues = [1, 5, 10, 100, "clear"];
@@ -397,6 +353,8 @@ function buildBettingBoard() {
     }
     bettingBoard.append(chipDeck);
 
+    /* Betting Bonus points  */
+
     let bankContainer = document.createElement("div");
     bankContainer.setAttribute("class", "bankContainer");
 
@@ -425,7 +383,7 @@ function buildBettingBoard() {
     container.append(bettingBoard);
 }
 
-// Clears bet
+// Bet clear
 function clearBet() {
     bet = [];
     numbersBet = [];
@@ -475,7 +433,8 @@ function setBet(e, n, t, o) {
                 numbersBet.push(numArray[i]);
             }
         }
-        // Gambling chips
+
+        //Chip creation
         if (!e.querySelector(".chip")) {
             let chipColour = wager < 5 ? "red" : wager < 10 ? "blue" : wager < 100 ? "orange" : "gold";
             let chip = document.createElement("div");
@@ -529,6 +488,8 @@ function spin() {
     }, 10000);
 }
 
+//Winning popup and calculation
+
 function win(winningSpin, winValue, betTotal) {
     if (winValue > 0) {
         let notification = document.createElement("div");
@@ -541,7 +502,7 @@ function win(winningSpin, winValue, betTotal) {
         nsnumber.innerText = winningSpin;
         nSpan.append(nsnumber);
         let nsTxt = document.createElement("span");
-        nsTxt.innerText = " Win";
+        nsTxt.innerText = "  You Win!";
         nSpan.append(nsTxt);
         let nsWin = document.createElement("div");
         nsWin.setAttribute("class", "nsWin");
@@ -550,14 +511,10 @@ function win(winningSpin, winValue, betTotal) {
         nsWinBlock.innerText = "Bet: " + betTotal;
         nSpan.append(nsWinBlock);
         nsWin.append(nsWinBlock);
+
         nsWinBlock = document.createElement("div");
         nsWinBlock.setAttribute("class", "nsWinBlock");
-        nsWinBlock.innerText = "Win: " + winValue;
-        nSpan.append(nsWinBlock);
-        nsWin.append(nsWinBlock);
-        nsWinBlock = document.createElement("div");
-        nsWinBlock.setAttribute("class", "nsWinBlock");
-        nsWinBlock.innerText = "Payout: " + (winValue + betTotal);
+        nsWinBlock.innerText = "Gained bonus Points: " + (winValue + betTotal);
         nsWin.append(nsWinBlock);
         nSpan.append(nsWin);
         notification.append(nSpan);
@@ -571,6 +528,7 @@ function win(winningSpin, winValue, betTotal) {
     }
 }
 
+// Clear Bet without chips function
 function removeBet(e, n, t, o) {
     wager = wager == 0 ? 100 : wager;
     for (i = 0; i < bet.length; i++) {
@@ -599,6 +557,8 @@ function removeBet(e, n, t, o) {
     }
 }
 
+// Rotating animation
+
 function spinWheel(winningSpin) {
     for (i = 0; i < wheelnumbersAC.length; i++) {
         if (wheelnumbersAC[i] == winningSpin) {
@@ -626,6 +586,8 @@ function spinWheel(winningSpin) {
         style.remove();
     }, 10000);
 }
+
+// Delete chips from table functon
 
 function removeChips() {
     var chips = document.getElementsByClassName("chip");
